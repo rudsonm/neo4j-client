@@ -1,0 +1,45 @@
+<div class="row">
+    <div class="col s12">
+        <div class="card">
+            <div class="card-image">
+                <div class="center-align">
+                    <i data-ng-hide="perfilVm.AppService.Usuario.avatar" class="material-icons" style="font-size: 10rem; padding-bottom: 3rem">person_pin</i>
+                    <img data-ng-show="perfilVm.AppService.Usuario.avatar" src="{{perfilVm.AppService.Usuario.avatar}}" alt="">
+                </div>                
+                <span 
+                    class="card-title" 
+                    style="background-color: 
+                    black; color: 
+                    white; 
+                    opacity: 0.3; 
+                    padding: 0.5rem 1rem; 
+                    width: 100%;"
+                    ng-bind="perfilVm.AppService.Usuario.nome">                    
+                </span>
+            </div>
+            <div class="card-content">
+                <p>
+                    <strong>Email: </strong> <span ng-bind="perfilVm.AppService.Usuario.email"></span>
+                </p>
+                <p>
+                    <strong>Data de Nascimento: </strong> <span ng-bind="perfilVm.AppService.Usuario.dataNascimento"></span>
+                </p>
+                <p>
+                    <strong>Postagens: </strong> <span ng-bind="perfilVm.AppService.Usuario.postagens"></span>
+                </p>
+                <p>
+                    <strong>Você Segue: </strong> <span ng-bind="perfilVm.AppService.Usuario.seguidos.length"></span>
+                </p>
+                <p>
+                    <strong>Seguidores: </strong> <span ng-bind="perfilVm.AppService.Usuario.seguidores.length"></span>
+                </p>
+            </div>            
+            <div class="card-action right-align perfil-action-buttons">
+                <input type="file" id="perfil-arquivo-input" name="file" ng-files="perfilVm.uploadImagem($files[0])" hidden />
+                <i id="upload-button" class="material-icons">add_a_photo</i>
+                <i class="material-icons" ng-click="postVm.mostrarNovaPostagem = true">note_add</i>
+                <i class="material-icons" ng-click="perfilVm.logout()">power_settings_new</i>
+            </div>
+        </div>
+    </div>
+</div>

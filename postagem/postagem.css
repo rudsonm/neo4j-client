@@ -1,0 +1,15 @@
+.postagem-header {
+    padding: 1rem 1.5rem;
+    /* background-color: #1abc9c; */
+    color: white;
+}
+
+.postagem-close-button {
+    cursor: pointer;
+    padding-top: 0.35rem;
+}
+
+.postagem-reaction-buttons:hover {
+    cursor: pointer;
+    color: #1abc9c;
+}

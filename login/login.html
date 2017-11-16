@@ -1,0 +1,66 @@
+<div class="col s12">
+    <div class="card blue" style="height: 15rem; margin-top: 0"></div>
+</div>
+<div class="row" style="margin-top: -6rem">
+    <div class="col l6 offset-l3 s10 offset-s1">
+        <div class="card horizontal">
+            <div class="card-image avatar">
+                <img ng-show="login.usuario" src="{{login.usuario.avatar}}" alt="">
+            </div>
+            <div class="card-stacked">
+                <div class="card-content">
+                    <!-- Inputs -->
+                    <package data-ng-show="login.mostrarFormularioRegistro">
+                        <div class="input-field col s12">
+                            <i class="material-icons prefix">person_id</i>
+                            <input id="login.nome" type="text" class="validate" ng-model="login.usuario.nome">
+                            <label for="login.nome">Nome</label>
+                        </div>
+                        <div class="input-field col s12">
+                            <i class="material-icons prefix">event</i>
+                            <input id="login.nascimento" type="text" class="validate" ng-model="login.usuario.dataNascimento">
+                            <label for="login.nascimento">Data de Nascimento</label>
+                        </div>
+                    </package>                    
+                    <div class="input-field col s12">
+                        <i class="material-icons prefix">mail</i>
+                        <input id="login.email" type="email" class="validate" 
+                                ng-model="login.usuario.email" 
+                                ng-model-options="{ debounce: 1000 }"
+                                ng-change="!login.mostrarFormularioRegistro 
+                                        && login.obterPerfilPrevio(login.usuario.email)">
+                        <label for="login.email">Email</label>
+                    </div>
+                    <div class="input-field col s12">
+                        <i class="material-icons prefix">vpn_key</i>
+                        <input id="login.senha" type="password" class="validate" data-ng-model="login.usuario.senha">
+                        <label for="login.senha">Senha</label>
+                    </div>
+                </div>
+                <!-- Buttons -->
+                <div class="card-action">                    
+                    <button class="btn waves-effect waves-light right brown"
+                            data-ng-hide="login.mostrarFormularioRegistro"
+                            data-ng-click="login.entrar(login.usuario.email, login.usuario.senha)">
+                            Entrar
+                    </button>
+                    <button class="btn-flat waves-effect waves-light right" 
+                            data-ng-click="login.mostrarFormularioRegistro = true"
+                            data-ng-hide="login.mostrarFormularioRegistro">
+                        Registre-se
+                    </button>
+                    <button class="btn waves-effect waves-light right brown"
+                            data-ng-show="login.mostrarFormularioRegistro"
+                            data-ng-click="login.registrar(login.usuario)">
+                            Salvar
+                    </button>
+                    <button class="btn-flat waves-effect waves-light right" 
+                            data-ng-click="login.mostrarFormularioRegistro = false"
+                            data-ng-show="login.mostrarFormularioRegistro">
+                        Cancelar
+                    </button>                    
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

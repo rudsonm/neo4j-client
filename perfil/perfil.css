@@ -1,0 +1,8 @@
+.perfil-action-buttons i {
+    padding-left: 0.5rem;
+    cursor: pointer;
+}
+
+.perfil-action-buttons i:hover {
+    color: #1abc9c;
+}
