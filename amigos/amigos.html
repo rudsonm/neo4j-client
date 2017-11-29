@@ -1,0 +1,30 @@
+<div class="row">
+    <div class="col s12">
+        <div class="card">
+            <div class="white-text blue">
+                <div class="row">
+                    <div class="input-field col s12">
+                        <i class="material-icons prefix" style="color: white">search</i>
+                        <input 
+                            ng-model="amigosVM.filtro" 
+                            ng-model-options="{ debounce: 1000 }"
+                            ng-change="amigosVM.filtrarPessoas(amigosVM.filtro)"
+                            id="filtro.pessoas" 
+                            class="white-text" 
+                            style="border-bottom: 1px solid white;" 
+                            type="text">
+                        <label for="filtro.pessoas" class="white-text">Busque por um amigo aqui..</label>
+                    </div>
+                </div>
+            </div>
+            <ul class="collection" style="margin-top: -1.3rem">
+                <li class="collection-item" ng-repeat="pessoa in amigosVM.listaPessoas">
+                    {{pessoa.nome}}
+                    <span class="right perfil-action-buttons">
+                        <i class="material-icons" ng-click="amigosVM.seguirPessoa(pessoa.id)">forward</i>
+                    </span>
+                </li>
+            </ul>
+        </div>        
+    </div>
+</div>

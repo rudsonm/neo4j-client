@@ -3,24 +3,30 @@
         .module("Neo4jNetwork")
         .service("AppService", AppService);
 
-    function AppService($location) {
+    function AppService($location, $sessionStorage) {
         this.API_URL = "http://localhost:1234/api/";
-        this.Usuario = null;
 
-        this.setUserImage = imagem => {
-            this.Usuario.avatar = imagem;
-            sessionStorage.setItem("neo4j-usuario", JSON.stringify(this.Usuario));
+        this.getUser = () => $sessionStorage.User;
+
+        this.setUser = (user) => {
+            $sessionStorage.User = user;
+            sessionStorage.setItem("neo4j-usuario", JSON.stringify(user));
+        }
+
+        this.setUserImage = (image) => {
+            $sessionStorage.User.avatar = image;
+            sessionStorage.setItem("neo4j-usuario", JSON.stringify($sessionStorage.User));
         }
 
         this.logout = () => {
-            this.Usuario = null;
+            $sessionStorage.User = undefined;
             sessionStorage.setItem("neo4j-usuario", "");
             $location.path("/login");
         }
 
-        this.login = usuario => {
-            this.Usuario = usuario;
-            sessionStorage.setItem("neo4j-usuario", JSON.stringify(this.Usuario));
+        this.login = (user) => {
+            $sessionStorage.User = user;
+            sessionStorage.setItem("neo4j-usuario", JSON.stringify(user));
             $location.path("/");
         }
     }

@@ -3,12 +3,13 @@
         .module("Neo4jNetwork")
         .controller("PerfilController", PerfilController);
 
-    function PerfilController($http, $location, AppService) {
+    function PerfilController($http, $location, AppService, $sessionStorage) {
         let perfilVm = this;
 
-        perfilVm.AppService = AppService;
+        perfilVm.st = $sessionStorage;
         perfilVm.logout = logout;
         perfilVm.uploadImagem = uploadImagem;
+        perfilVm.AppService = AppService;
 
         _obterSeguidores();
         _obterSeguidos();
@@ -22,31 +23,37 @@
         }
 
         function _obterSeguidores() {
-            let promise = $http.get(AppService.API_URL.concat("pessoas/", perfilVm.AppService.Usuario.id, "/seguidores"));
-            promise.then(response => 
-                perfilVm.AppService.Usuario.seguidores = response.data
-            );
+            let promise = $http.get(AppService.API_URL.concat("pessoas/", perfilVm.AppService.getUser().id, "/seguidores"));
+            promise.then(response => {
+                let usuario = AppService.getUser();
+                usuario.seguidores = response.data;
+                AppService.setUser(usuario);
+            });
         }
 
         function _obterSeguidos() {
-            let promise = $http.get(AppService.API_URL.concat("pessoas/", perfilVm.AppService.Usuario.id, "/seguidos"));
-            promise.then(response => 
-                perfilVm.AppService.Usuario.seguidos = response.data
-            );
+            let promise = $http.get(AppService.API_URL.concat("pessoas/", perfilVm.AppService.getUser().id, "/seguidos"));
+            promise.then(response => {
+                let usuario = AppService.getUser();
+                usuario.seguidos = response.data;
+                AppService.setUser(usuario);
+            });
         }
 
         function uploadImagem(imagem) {
-            let url = AppService.API_URL.concat("pessoas/", perfilVm.AppService.Usuario.id, "/avatar");
+            let url = AppService.API_URL.concat("pessoas/", perfilVm.AppService.getUser().id, "/avatar");
             let formdata = new FormData();
             formdata.append("file", imagem);
             $http({
                 method: 'post',
-                url: AppService.API_URL.concat("pessoas/", perfilVm.AppService.Usuario.id, "/avatar"),
+                url: AppService.API_URL.concat("pessoas/", perfilVm.AppService.getUser().id, "/avatar"),
                 data: formdata,
                 headers: { 'Content-Type': undefined }
-            }).then(response => 
-                _getBase64(imagem).then(base64 => perfilVm.AppService.setUserImage(base64))
-            );
+            }).then(response => _getBase64(imagem).then(base64 => {
+                perfilVm.st.User.avatar = base64;
+                document.getElementById("user.avatar").setAttribute("src", base64);
+                perfilVm.AppService.setUseImage(base64);
+            }));
         }
 
         function _getBase64(file) {

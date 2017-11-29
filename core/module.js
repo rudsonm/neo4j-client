@@ -1,2 +1,2 @@
 angular
-    .module('Neo4jNetwork', ['ngRoute']);
+    .module('Neo4jNetwork', ['ngRoute', 'ngStorage', 'restangular']);

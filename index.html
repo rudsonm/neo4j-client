@@ -3,14 +3,16 @@
   <head>
     <meta charset="UTF-8" />
     <title>Neo4j Network</title>
-  </head>
-  <body ng-app="Neo4jNetwork" ng-controller="AppController" style="background-color: #FAFAFA">
 
-    <ng-view></ng-view>
+    <!-- Utils -->
+    <script src="vendors/angular/underscore.min.js"></script>
+    <script src="vendors/linq/linq.js"></script>
 
     <!-- Angular -->
-    <script src="vendors/angular/angular.min.js"></script>
-    <script src="vendors/angular/angular-route.min.js"></script>
+    <script type="text/javascript" src="vendors/angular/angular.min.js"></script>
+    <script type="text/javascript" src="vendors/angular/angular-route.min.js"></script>
+    <script type="text/javascript" src="vendors/angular/angular-storage.min.js"></script>
+    <script type="text/javascript" src="vendors/angular/restangular.min.js"></script>
     
     <!-- Material Icons -->
     <link rel="stylesheet" href="vendors/material-icons/material-icons.css" />
@@ -21,16 +23,20 @@
 
     <!-- Materialize -->
     <script src="vendors/materialize/js/materialize.min.js"></script>
-    <link rel="stylesheet" href="vendors/materialize/css/materialize.min.css" />
+    <link rel="stylesheet" href="vendors/materialize/css/materialize.min.css" />    
+  </head>
+  <body ng-app="Neo4jNetwork" ng-controller="AppController" style="background-color: #FAFAFA">
 
-    <!-- Utils -->
-    <script src="vendors/linq/linq.js"></script>
+    <ng-view></ng-view>
 
     <!-- Application -->
     <script src="core/module.js"></script>
     <script src="core/route.js"></script>    
     <script src="core/app.config.js"></script>
     <script src="core/app.service.js"></script>
+    <script src="core/toast.service.js"></script>
+    <script src="core/request.service.js"></script>
+    <script src="core/rest.service.js"></script>
     <script src="core/app.controller.js"></script>
     
     <script src="utils/file.directive.js"></script>
@@ -45,5 +51,8 @@
     <script src="perfil/perfil.controller.js"></script>
     <script src="perfil/perfil.directive.js"></script>
     <link rel="stylesheet" href="perfil/perfil.css">
+
+    <script src="amigos/amigos.controller.js"></script>
+    <script src="amigos/amigos.directive.js"></script>
   </body>
 </html>

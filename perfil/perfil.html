@@ -3,8 +3,8 @@
         <div class="card">
             <div class="card-image">
                 <div class="center-align">
-                    <i data-ng-hide="perfilVm.AppService.Usuario.avatar" class="material-icons" style="font-size: 10rem; padding-bottom: 3rem">person_pin</i>
-                    <img data-ng-show="perfilVm.AppService.Usuario.avatar" src="{{perfilVm.AppService.Usuario.avatar}}" alt="">
+                    <i data-ng-hide="perfilVm.AppService.getUser().avatar" class="material-icons" style="font-size: 10rem; padding-bottom: 3rem">person_pin</i>
+                    <img id="user.avatar" data-ng-show="perfilVm.AppService.getUser().avatar" src="{{perfilVm.st.User.avatar}}" alt="">
                 </div>                
                 <span 
                     class="card-title" 
@@ -14,24 +14,24 @@
                     opacity: 0.3; 
                     padding: 0.5rem 1rem; 
                     width: 100%;"
-                    ng-bind="perfilVm.AppService.Usuario.nome">                    
+                    ng-bind="perfilVm.AppService.getUser().nome">                    
                 </span>
             </div>
             <div class="card-content">
                 <p>
-                    <strong>Email: </strong> <span ng-bind="perfilVm.AppService.Usuario.email"></span>
+                    <strong>Email: </strong> <span ng-bind="perfilVm.AppService.getUser().email"></span>
                 </p>
                 <p>
-                    <strong>Data de Nascimento: </strong> <span ng-bind="perfilVm.AppService.Usuario.dataNascimento"></span>
+                    <strong>Data de Nascimento: </strong> <span ng-bind="perfilVm.AppService.getUser().dataNascimento"></span>
                 </p>
                 <p>
-                    <strong>Postagens: </strong> <span ng-bind="perfilVm.AppService.Usuario.postagens"></span>
+                    <strong>Postagens: </strong> <span ng-bind="perfilVm.AppService.getUser().postagens"></span>
                 </p>
                 <p>
-                    <strong>Você Segue: </strong> <span ng-bind="perfilVm.AppService.Usuario.seguidos.length"></span>
+                    <strong>Você Segue: </strong> <span ng-bind="perfilVm.AppService.getUser().seguidos.length"></span>
                 </p>
                 <p>
-                    <strong>Seguidores: </strong> <span ng-bind="perfilVm.AppService.Usuario.seguidores.length"></span>
+                    <strong>Seguidores: </strong> <span ng-bind="perfilVm.AppService.getUser().seguidores.length"></span>
                 </p>
             </div>            
             <div class="card-action right-align perfil-action-buttons">

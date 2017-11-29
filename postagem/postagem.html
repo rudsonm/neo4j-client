@@ -4,7 +4,7 @@
             <div class="postagem-header white-text blue">
                 <span class="card-title">Nova Postagem</span>
                 <i class="material-icons postagem-close-button right" ng-click="postVm.fecharNovaPostagem()">clear</i>
-            </div>
+            </div>            
             <div class="card-content">
                 <div class="row">
                     <div class="input-field col s12">
@@ -15,6 +15,15 @@
                         <textarea id="postagem.descricao" class="materialize-textarea" ng-model="postVm.postagem.descricao"></textarea>
                         <label for="postagem.descricao">Descrição</label>
                     </div>
+                    <div class="file-field input-field col s12">
+                        <div class="btn brown">
+                            <span>Imagem</span>
+                            <input type="file" ng-files="postVm.carregarImagem($files[0])">
+                        </div>
+                        <div class="file-path-wrapper">
+                            <input class="file-path validate" type="text">
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="card-action right-align">
@@ -24,15 +33,27 @@
     </div>
     <!-- Lista -->
     <div class="col s12">        
-        <div class="card" ng-repeat="postagem in postVm.postagens">
+        <div class="card" ng-repeat="postagem in postVm.postagens | orderBy:'data':true">
             <div class="postagem-header white-text blue">
                 <span class="card-title" ng-bind="postagem.titulo"></span>
-            </div>            
+                <i class="material-icons postagem-close-button right" ng-show="postagem.pessoa === postVm.usuario.id" ng-click="postVm.remover(postagem.id)">clear</i>
+            </div>
+            <img src="{{postagem.imagem}}" alt="" width="100%">
             <div class="card-content">                
                 <div class="row" ng-bind="postagem.descricao"></div>
             </div>
-            <div class="card-action right-align postagem-reaction-buttons">
-                <i class="material-icons" ng-click="postVm.reagir(postagem, 'CURTE')">thumb_up</i>
+            <div class="card-action right-align">
+                <span class="left">
+                    {{postagem.autor}}
+                </span>
+                <span>
+                    <i class="material-icons postagem-reaction-buttons" ng-click="postVm.reagir(postagem, 'CURTE')">thumb_up</i>
+                    <span class="reage-count">0</span>
+                </span>                
+                <span>
+                    <i class="material-icons postagem-reaction-buttons" ng-click="postVm.reagir(postagem, 'DETESTA')">thumb_down</i>
+                    <span class="reage-count">0</span>
+                </span>                
             </div>
         </div>
     </div>
