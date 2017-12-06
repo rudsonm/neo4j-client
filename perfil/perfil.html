@@ -25,13 +25,13 @@
                     <strong>Data de Nascimento: </strong> <span ng-bind="perfilVm.AppService.getUser().dataNascimento"></span>
                 </p>
                 <p>
-                    <strong>Postagens: </strong> <span ng-bind="perfilVm.AppService.getUser().postagens"></span>
+                    <strong>Postagens: </strong> <span ng-bind="perfilVm.st.numeroDePostagens || '0'"></span>
                 </p>
                 <p>
-                    <strong>Você Segue: </strong> <span ng-bind="perfilVm.AppService.getUser().seguidos.length"></span>
+                    <strong>Você Segue: </strong> <span ng-bind="perfilVm.st.seguidos"></span>
                 </p>
                 <p>
-                    <strong>Seguidores: </strong> <span ng-bind="perfilVm.AppService.getUser().seguidores.length"></span>
+                    <strong>Seguidores: </strong> <span ng-bind="perfilVm.st.seguidores"></span>
                 </p>
             </div>            
             <div class="card-action right-align perfil-action-buttons">

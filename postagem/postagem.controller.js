@@ -3,14 +3,26 @@
         .module("Neo4jNetwork")
         .controller("PostagemController", PostagemController);
     
-    function PostagemController($http, AppService, RestService) {
+    function PostagemController($http, AppService, RestService, $sessionStorage, $scope) {
         var postVm = this;
+
+        $scope.sessionStorage = $sessionStorage;
+
+        $scope.$watch("sessionStorage.seguidos", (data) => {
+            obter();
+        });
+
+        $scope.$watch("sessionStorage.seguidores", (data) => {
+            obter();
+        });
 
         postVm.usuario = AppService.getUser();
         postVm.postar = postar;
         postVm.remover = remover;
         postVm.carregarImagem = carregarImagem;
         postVm.fecharNovaPostagem = fecharNovaPostagem;
+
+        $sessionStorage.numeroDePostagens = 0;
 
         obter();
 
@@ -51,6 +63,7 @@
             });
             promise.then(function(response) {
                 postVm.postagens = response.data;
+                $sessionStorage.numeroDePostagens = postVm.postagens.filter(p => p.autor === AppService.getUser().nome).length;
             });
         }
 

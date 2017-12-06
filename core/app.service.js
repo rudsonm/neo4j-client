@@ -29,5 +29,20 @@
             sessionStorage.setItem("neo4j-usuario", JSON.stringify(user));
             $location.path("/");
         }
+
+        this.setFollowers = (followers) => {
+            $sessionStorage.seguidores = followers.length;
+            $sessionStorage.followers = followers;
+        }
+
+        this.getFollowers = () => $sessionStorage.followers;
+
+        this.setFolloweds = (followeds) => {
+            $sessionStorage.seguidos = followeds.length;
+            $sessionStorage.followeds = followeds
+        };
+
+        this.getFolloweds = () => $sessionStorage.followeds;
+
     }
 })();

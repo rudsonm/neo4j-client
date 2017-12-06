@@ -21,7 +21,8 @@
                 <li class="collection-item" ng-repeat="pessoa in amigosVM.listaPessoas">
                     {{pessoa.nome}}
                     <span class="right perfil-action-buttons">
-                        <i class="material-icons" ng-click="amigosVM.seguirPessoa(pessoa.id)">forward</i>
+                        <i class="material-icons" ng-show="pessoa.seguida" ng-click="amigosVM.deseguirPessoa(pessoa)" style="color: lightgreen">done</i>
+                        <i class="material-icons" ng-hide="pessoa.seguida" ng-click="amigosVM.seguirPessoa(pessoa)">person_add</i>
                     </span>
                 </li>
             </ul>

@@ -26,7 +26,8 @@
             let promise = $http.get(AppService.API_URL.concat("pessoas/", perfilVm.AppService.getUser().id, "/seguidores"));
             promise.then(response => {
                 let usuario = AppService.getUser();
-                usuario.seguidores = response.data;
+                usuario.seguidores = response.data.map(seguidor => seguidor.id);
+                AppService.setFollowers(usuario.seguidores);
                 AppService.setUser(usuario);
             });
         }
@@ -35,7 +36,8 @@
             let promise = $http.get(AppService.API_URL.concat("pessoas/", perfilVm.AppService.getUser().id, "/seguidos"));
             promise.then(response => {
                 let usuario = AppService.getUser();
-                usuario.seguidos = response.data;
+                usuario.seguidos = response.data.map(seguido => seguido.id);
+                AppService.setFolloweds(usuario.seguidos);
                 AppService.setUser(usuario);
             });
         }
